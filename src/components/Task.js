@@ -7,6 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { Stack } from '@mui/material';
+import Chip from '@mui/material/Chip';
+
 
 function Task(props){
     
@@ -16,6 +19,7 @@ function Task(props){
         key={props.id}
         xs={12}
         md={4}
+       
     >
         <Card sx={{
             backgroundColor: props.done ? 'lightgrey' : 'lightblue',
@@ -45,6 +49,37 @@ function Task(props){
                 </Typography>
                 </Box>
 
+
+                <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '20px' 
+            }}
+                   >
+                       
+                        <Chip label={props.priority}  size = 'small'
+                        style={{
+                            backgroundColor: (() =>{
+                            switch (props.priority.toLowerCase()){
+                                case 'low':
+                                    return '#4CBB17';
+                                case 'medium':
+                                        return '#FFBF00';
+                                case 'high':
+                                    return '#D22B2B';
+                                default: 
+                                return '#B2BEB5'
+                            }
+                        })()
+                        
+                        }}
+                        />
+                    </Box>
+                     
+
+
                 
 
                 <Typography
@@ -56,8 +91,7 @@ function Task(props){
                     {props.description}
                 </Typography>
          </CardContent>
-  
-
+    
             <CardActions sx={{justifyContent: 'space-between', padding: '20px'}}>
                 <Button variant="contained" size="small" color="success" onClick={props.markDone}>
                     Done
